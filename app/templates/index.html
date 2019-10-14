@@ -1,0 +1,47 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Página principal{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button " class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
+				<span class="sr-only  ">Toggle navigation</span>
+                <span class="icon-bar" style="background-color: blue !important;"> </span>
+					<span class="icon-bar" style="background-color: blue !important;"> </span>
+					<span class="icon-bar" style="background-color: blue !important;"> 	</span>
+			
+            </button>
+            <a class="navbar-brand" href="/">Pegasus</a>
+       </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href={{ url_for('produtos') }}>Produtos</a></li>
+				<li><a href={{ url_for('promocoes') }}>Promocoes</a></li>
+				<li><a href="/">Fale Conosco</a></li>
+				<li><a href="/login"> {% if getUser() %} 
+									 	Olá {{ getUser() }} ! 
+									{% else %}
+									  	Entre! 
+									{% endif %}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+<div class="container p-3 mb-2 bg-primary text-white"">
+		
+		{% if name %}
+	 		<h1> Ola {{ name | capitalize }}, ao Mundo dos Templates Herdados! </h1>
+		{% else %}
+	 		<h1>Ola Estranho, ao Mundo dos Templates Herdados! </h1>
+		{% endif %}
+	
+</div>
+{% endblock %}
