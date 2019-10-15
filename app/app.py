@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, url_for, redirect, make_response
+from flask import Flask, render_template, request, json, url_for, redirect, make_response, flash
 from flask_bootstrap import Bootstrap
 from config import Config
 from forms import LoginForm
@@ -19,7 +19,6 @@ u = None
 
 @app.route("/")
 def index():
-    
     return render_template("index.html")
 
 @app.route("/user/<name>")
@@ -49,11 +48,14 @@ def favicon():
 #        return render_template("login.html")
 #    return render_template("index.html", name=u, u=u)    
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
+    if form.validate_on_submit():
+        flash('Requisição de login para  {}, lembre-me={}'.format(form.usuario.data, form.lembre_me.data))
+        return redirect('/')
 
+    return render_template('login.html', title='Entrar', form=form)
 
 def setUser(user):
     global u 
