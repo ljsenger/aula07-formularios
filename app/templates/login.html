@@ -1,44 +1,23 @@
 {% extends "index.html" %}
 {% import 'macros.html' as macros %}
-
-
-
-
 {% block content %}
-<!-- Default form login -->
-<form class="text-center border border-light p-5" action="http://localhost:5000/login" method='POST'>
 
-        <p class="h4 mb-4">Sign in</p>
-    
-        <!-- Email -->
-        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name=email>
-    
-        <!-- Password -->
-        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
-    
-        <div class="d-flex justify-content-around">
-            <div>
-                <!-- Remember me -->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                </div>
-            </div>
-            <div>
-                <!-- Forgot password -->
-                <a href="">Forgot password?</a>
-            </div>
-        </div>
-    
-        <!-- Sign in button -->
-        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-    
-        <!-- Register -->
-        <p>Not a member?
-            <a href="">Register</a>
-        </p>
-    
-            
-    </form>
+<div class="container">
+        <h1>Entre</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.usuario.label }}<br>
+        {{ form.usuario(size=32, class_ = 'form-control first-input') }}
+    </p>
+    <p>
+        {{ form.senha.label }}<br>
+        {{ form.senha(size=32, class_ = 'form-control first-input') }}
+    </p>
+    <p>{{ form.lembre_me() }} {{ form.lembre_me.label }}</p>
+    <p>{{ form.submit() }}</p>
+</form>
+</div>
+
 {% endblock %}
 

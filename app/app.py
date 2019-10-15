@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, json, url_for, redirect, make_response
 from flask_bootstrap import Bootstrap
 from config import Config
+from forms import LoginForm
 
 
 #modelos={"0": "pegasus", "1": "vintage", "2": "sport"}
@@ -38,15 +39,21 @@ def promocoes():
 def favicon():
     return redirect(url_for('static', filename='favicon.ico'))
 
-@app.route('/login', methods=['POST', 'GET'])
-def entre():
+#@app.route('/login', methods=['POST', 'GET'])
+#def entre():
     
-    if request.method == 'POST':
-        setUser(request.form['email'])
-        return render_template("index.html", name=u, u=u)
-    else:
-        return render_template("login.html")
-    return render_template("index.html", name=u, u=u)    
+#    if request.method == 'POST':
+#        setUser(request.form['email'])
+#        return render_template("index.html", name=u, u=u)
+#    else:
+#        return render_template("login.html")
+#    return render_template("index.html", name=u, u=u)    
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
+
 
 def setUser(user):
     global u 
