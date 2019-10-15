@@ -9,10 +9,20 @@
     <p>
         {{ form.usuario.label }}<br>
         {{ form.usuario(size=32, class_ = 'form-control first-input') }}
+        {% for erro in form.usuario.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ erro }}
+        </div>
+        {% endfor %}
     </p>
     <p>
         {{ form.senha.label }}<br>
         {{ form.senha(size=32, class_ = 'form-control first-input') }}
+        {% for erro in form.senha.errors %}
+        <div class="alert alert-danger" role="alert"> 
+            {{ erro }}
+        </div>
+        {% endfor %}
     </p>
     <p>{{ form.lembre_me() }} {{ form.lembre_me.label }}</p>
     <p>{{ form.submit() }}</p>

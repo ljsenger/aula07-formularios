@@ -53,7 +53,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash('Requisição de login para  {}, lembre-me={}'.format(form.usuario.data, form.lembre_me.data))
-        return redirect('/')
+        return redirect(url_for('index'))
 
     return render_template('login.html', title='Entrar', form=form)
 
