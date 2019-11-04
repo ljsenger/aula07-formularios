@@ -1,7 +1,22 @@
-from flask import Flask, render_template, request, json, url_for, redirect, make_response, flash
+from flask import Flask, render_template, request, json, url_for, redirect, make_response, flash, session
 from flask_bootstrap import Bootstrap
 from config import Config
 from forms import LoginForm
+
+users = {
+    "julian": {
+        "username": "julian",
+        "email": "julian@gmail.com",
+        "password": "example",
+        "bio": "Some guy from the internet"
+    },
+    "clarissa": {
+        "username": "clarissa",
+        "email": "clarissa@icloud.com",
+        "password": "sweetpotato22",
+        "bio": "Sweet potato is life"
+    }
+}
 
 
 #modelos={"0": "pegasus", "1": "vintage", "2": "sport"}
@@ -53,6 +68,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash('Requisição de login para  {}, lembre-me={}'.format(form.usuario.data, form.lembre_me.data))
+        session['user'] = form.usuario.data
         return redirect(url_for('index'))
 
     return render_template('login.html', title='Entrar', form=form)
